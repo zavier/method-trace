@@ -14,9 +14,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.javassist</groupId>
-            <artifactId>javassist</artifactId>
-            <version>3.27.0-GA</version>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+            <version>1.10.13</version>
         </dependency>
     </dependencies>
 
@@ -39,9 +39,9 @@
                             <archive>
                                 <manifestEntries>
                                     <Premain-Class>com.github.zavier.JavaAgent</Premain-Class>
-                                    <Agent-Class>com.github.zavier.JavaAgent</Agent-Class>
+<!--                                    <Agent-Class>com.github.zavier.JavaAgent</Agent-Class>-->
                                     <Can-Redefine-Classes>true</Can-Redefine-Classes>
-                                    <Can-Retransform-Classes>true</Can-Retransform-Classes>
+<!--                                    <Can-Retransform-Classes>true</Can-Retransform-Classes>-->
                                 </manifestEntries>
                             </archive>
                         </configuration>

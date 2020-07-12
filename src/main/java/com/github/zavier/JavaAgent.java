@@ -1,21 +1,19 @@
 package com.github.zavier;
 
+import net.bytebuddy.agent.builder.AgentBuilder;
+import net.bytebuddy.matcher.ElementMatchers;
+
 import java.lang.instrument.Instrumentation;
-import java.lang.instrument.UnmodifiableClassException;
 
 public class JavaAgent {
 
     public static void premain(String agentArgs, Instrumentation instrumentation) {
         System.out.println("agentArgs:"+ agentArgs);
-        instrumentation.addTransformer(new MethodClassFileTransformer(agentArgs));
+//        String interceptPackagePrefix = agentArgs.replace('.', '/');
+        new AgentBuilder.Default()
+                .type(ElementMatchers.nameStartsWith(agentArgs))
+                .transform(new ClassFileTransformer())
+                .installOn(instrumentation);
     }
 
-    public static void agentmain(String agentArgs, Instrumentation instrumentation) {
-        instrumentation.addTransformer(new MethodClassFileTransformer(agentArgs));
-        try {
-            instrumentation.retransformClasses(String.class);
-        } catch (UnmodifiableClassException e) {
-            e.printStackTrace();
-        }
-    }
 }
